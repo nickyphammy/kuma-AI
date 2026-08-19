@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: oklch(0.16 0.008 265);
+  --color-bg-elevated: oklch(0.2 0.01 265);
+  --color-bg-subtle: oklch(0.24 0.012 265);
+  --color-border: oklch(0.32 0.014 265);
+  --color-border-strong: oklch(0.42 0.016 265);
+  --color-fg: oklch(0.95 0.004 265);
+  --color-fg-muted: oklch(0.7 0.012 265);
+  --color-fg-subtle: oklch(0.56 0.014 265);
+  --color-accent: oklch(0.72 0.15 250);
+  --color-accent-fg: oklch(0.16 0.008 265);
+  --color-success: oklch(0.75 0.16 150);
+  --color-warning: oklch(0.8 0.15 80);
+  --color-danger: oklch(0.68 0.19 22);
+
+  --radius-card: 0.75rem;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+  border: 3px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fg-subtle);
+}
+
+@keyframes kuma-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.kuma-caret {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1rem;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background-color: var(--color-accent);
+  animation: kuma-blink 1s steps(1) infinite;
+}
