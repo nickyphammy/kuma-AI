@@ -27,6 +27,14 @@ npm run dev
 
 Open http://localhost:3000.
 
+**Or run the UI in Docker** (Ollama still stays on the host so Mac GPU works):
+
+```bash
+docker compose up --build
+```
+
+The container binds only `127.0.0.1:3000`. On Linux, if it cannot reach Ollama, start the daemon with `OLLAMA_HOST=0.0.0.0:11434 ollama serve`.
+
 **3. Pull your first model**
 
 Use the model dropdown → "Pull a new model…" and grab `llama3.2:3b` (~2 GB). Or from the terminal:
@@ -68,6 +76,16 @@ npm start          # serve the build
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
 ```
+
+## CI/CD (GitHub Actions)
+
+Pushes and pull requests run [`.github/workflows/ci.yml`](./.github/workflows/ci.yml):
+
+1. **CI** — `npm ci`, lint, typecheck, `next build`
+2. **Image** — `docker build` on every run
+3. **CD** — on push to `main`, the image is published to GitHub Container Registry (`ghcr.io/<owner>/<repo>:latest`)
+
+No cloud host is deployed. This app is local-first; the container is the release artifact. After the first successful `main` run, make the GHCR package public if you want others to pull it: GitHub → Packages → `kuma-ai` → Package settings → Change visibility.
 
 ## Project docs
 
